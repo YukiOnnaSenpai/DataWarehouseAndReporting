@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>SourceIT40</DataSourceReference>
+      <CommandText>select count(f.order_id) as 'Prodaje',d.order_estimated_deleivery_date,o.order_status
+from Fact f
+inner join [Order] o on (f.order_id = o.order_id)
+inner join [Date] d on (o.order_id = d.order_id)
+group by o.order_status,d.order_estimated_deleivery_date</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <AutoJoin>False</AutoJoin>
+          <SelectedColumns>
+            <ColumnExpression ColumnOwner="Date" ColumnName="order_id" />
+            <ColumnExpression ColumnOwner="Date" ColumnName="order_estimated_deleivery_date" />
+            <ColumnExpression ColumnOwner="Order" ColumnName="order_id" />
+            <ColumnExpression ColumnOwner="Order" ColumnName="order_status" />
+            <ColumnExpression ColumnOwner="Fact" ColumnName="order_id" />
+          </SelectedColumns>
+          <Joins>
+            <Join Type="CROSS JOIN" ColumnOwner="Order" />
+            <Join Type="INNER JOIN" ColumnOwner="Date">
+              <On>
+                <From ColumnOwner="Order" ColumnName="order_id" />
+                <To ColumnOwner="Date" ColumnName="order_id" />
+              </On>
+            </Join>
+            <Join Type="INNER JOIN" ColumnOwner="Fact">
+              <On>
+                <From ColumnOwner="Fact" ColumnName="order_id" />
+                <To ColumnOwner="Order" ColumnName="order_id" />
+              </On>
+            </Join>
+          </Joins>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="Prodaje">
+        <DataField>Prodaje</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="order_estimated_deleivery_date">
+        <DataField>order_estimated_deleivery_date</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="order_status">
+        <DataField>order_status</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

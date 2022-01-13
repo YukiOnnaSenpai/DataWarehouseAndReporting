@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>SourceIT40</DataSourceReference>
+      <CommandText>select top 10 s.seller_nid,s.seller_state,s.seller_city,count(f.order_id) as orders,d.order_estimated_deleivery_date
+from Fact f
+inner join Seller s on (f.seller_id = s.seller_id)
+inner join OrderItem oi on (f.order_item_id = oi.order_item_id)
+inner join [Order] o on (f.order_id = o.order_id)
+inner join [Date] d on (o.order_id = d.order_id)
+group by s.seller_nid,s.seller_state, s.seller_city,d.order_estimated_deleivery_date</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="seller_nid">
+        <DataField>seller_nid</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="seller_state">
+        <DataField>seller_state</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="seller_city">
+        <DataField>seller_city</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="orders">
+        <DataField>orders</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="order_estimated_deleivery_date">
+        <DataField>order_estimated_deleivery_date</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

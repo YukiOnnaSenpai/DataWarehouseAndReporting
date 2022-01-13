@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>SourceIT40</DataSourceReference>
+      <CommandText>select top 10 c.customer_state,d.order_estimated_deleivery_date, max(o.order_id) as 'maxPor'
+from Fact f
+inner join Customer c on (c.customer_id = f.customer_id)
+inner join [Order] o on (f.order_id = o.order_id)
+inner join [Date] d on (o.order_id = d.order_id)
+group by c.customer_state,d.order_estimated_deleivery_date
+order by maxPor desc</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <AutoJoin>False</AutoJoin>
+          <SelectedColumns>
+            <ColumnExpression ColumnOwner="Customer" ColumnName="customer_state" />
+            <ColumnExpression ColumnOwner="Customer" ColumnName="customer_nid" />
+            <ColumnExpression ColumnOwner="Order" ColumnName="customer_nid" />
+            <ColumnExpression ColumnOwner="Date" ColumnName="order_estimated_deleivery_date" />
+            <ColumnExpression ColumnOwner="Date" ColumnName="order_id" />
+            <ColumnExpression ColumnOwner="Order" ColumnName="order_id" />
+          </SelectedColumns>
+          <Joins>
+            <Join Type="CROSS JOIN" ColumnOwner="Customer" />
+            <Join Type="INNER JOIN" ColumnOwner="Order">
+              <On>
+                <From ColumnOwner="Customer" ColumnName="customer_nid" />
+                <To ColumnOwner="Order" ColumnName="customer_nid" />
+              </On>
+            </Join>
+            <Join Type="INNER JOIN" ColumnOwner="Date">
+              <On>
+                <From ColumnOwner="Order" ColumnName="order_id" />
+                <To ColumnOwner="Date" ColumnName="order_id" />
+              </On>
+            </Join>
+          </Joins>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="customer_state">
+        <DataField>customer_state</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="maxPor">
+        <DataField>maxPor</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="order_estimated_deleivery_date">
+        <DataField>order_estimated_deleivery_date</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

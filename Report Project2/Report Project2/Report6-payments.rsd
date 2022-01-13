@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>SourceIT40</DataSourceReference>
+      <CommandText>select p.payment_type,p.payment_value,p.payment_installments
+from Fact f
+inner join Payment p on (f.payment_id = p.payment_id)</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="payment_type">
+        <DataField>payment_type</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="payment_value">
+        <DataField>payment_value</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="payment_installments">
+        <DataField>payment_installments</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>SourceIT40</DataSourceReference>
+      <CommandText>select top(500) c.customer_state, max(p.product_category_name) as 'Products', MONTH(d.order_estimated_deleivery_date) as 'MonthNum' from Fact f
+inner join Product p on (f.product_id = p.product_id)
+inner join Customer c on (f.customer_id = c.customer_id)
+inner join [Order] o on (f.order_id = o.order_id)
+inner join [Date] d on (o.order_id = d.date_id)
+group by c.customer_state, MONTH(d.order_estimated_deleivery_date)</CommandText>
+      <rd:DesignerState>
+        <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+          <AutoJoin>False</AutoJoin>
+          <SelectedColumns>
+            <ColumnExpression ColumnOwner="OrderItem" ColumnName="product_nid" />
+            <ColumnExpression ColumnOwner="OrderItem" ColumnName="price" />
+            <ColumnExpression ColumnOwner="OrderItem" ColumnName="freight_value" />
+            <ColumnExpression ColumnOwner="OrderItem" ColumnName="order_nid" />
+            <ColumnExpression ColumnOwner="Order" ColumnName="order_nid" />
+            <ColumnExpression ColumnOwner="Order" ColumnName="customer_nid" />
+            <ColumnExpression ColumnOwner="Customer" ColumnName="customer_nid" />
+            <ColumnExpression ColumnOwner="Customer" ColumnName="customer_state" />
+            <ColumnExpression ColumnOwner="Date" ColumnName="order_id" />
+            <ColumnExpression ColumnOwner="Date" ColumnName="order_estimated_deleivery_date" />
+            <ColumnExpression ColumnOwner="Product" ColumnName="product_nid" />
+            <ColumnExpression ColumnOwner="Product" ColumnName="product_category_name_english" />
+          </SelectedColumns>
+          <Joins>
+            <Join Type="CROSS JOIN" ColumnOwner="Order" />
+            <Join Type="INNER JOIN" ColumnOwner="Date">
+              <On>
+                <From ColumnOwner="Order" ColumnName="order_id" />
+                <To ColumnOwner="Date" ColumnName="order_id" />
+              </On>
+            </Join>
+            <Join Type="INNER JOIN" ColumnOwner="Customer">
+              <On>
+                <From ColumnOwner="Order" ColumnName="customer_nid" />
+                <To ColumnOwner="Customer" ColumnName="customer_nid" />
+              </On>
+            </Join>
+            <Join Type="INNER JOIN" ColumnOwner="OrderItem">
+              <On>
+                <From ColumnOwner="OrderItem" ColumnName="order_nid" />
+                <To ColumnOwner="Order" ColumnName="order_nid" />
+              </On>
+            </Join>
+            <Join Type="INNER JOIN" ColumnOwner="Product">
+              <On>
+                <From ColumnOwner="Product" ColumnName="product_nid" />
+                <To ColumnOwner="OrderItem" ColumnName="order_nid" />
+              </On>
+            </Join>
+          </Joins>
+        </QueryDefinition>
+      </rd:DesignerState>
+    </Query>
+    <Fields>
+      <Field Name="customer_state">
+        <DataField>customer_state</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Products">
+        <DataField>Products</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="MonthNum">
+        <DataField>MonthNum</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

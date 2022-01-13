@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "RSP-GrandFinale", "Report Project2\RSP-GrandFinale.rptproj", "{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}.Debug|Default.ActiveCfg = Debug
+		{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}.Debug|Default.Build.0 = Debug
+		{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}.Debug|Default.Deploy.0 = Debug
+		{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}.DebugLocal|Default.Build.0 = DebugLocal
+		{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}.Release|Default.ActiveCfg = Release
+		{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}.Release|Default.Build.0 = Release
+		{20A4063A-69E2-4A4D-91D2-45943A1FFE7B}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9AAA44E-2FE5-4AF9-9939-9A1AD1B4318C}
+	EndGlobalSection
+EndGlobal
